@@ -6,10 +6,12 @@
 		margin-bottom: 15mm;
 		background: wheat;
 		color: #000e;
+		font-size: 11pt;
 		@top-center {
-			content: "\#nuravClasses // "string(title) "/" string(section);
+			content: string(title) "/" string(section);
 			border-bottom: solid black 2px;
 			vertical-align: bottom;
+			font-family: 'Noto Sans', sans-serif;
 		}
 		@bottom-center {
 			content: "\[" counter(page) "/" counter(pages) "\]";
@@ -41,88 +43,125 @@
 		margin-left: 20mm;
 		margin-right: 10mm;
 	}
+	@page blank{
+		@top-center {
+			content: none;
+			border: none;
+		}
+	}
 	.qc{
 		page-break-inside: avoid;
 	}
+	.blankPage{
+		page: blank;
+	}
+	* {
+		box-sizing: border-box;
+		font-family: "Noto Serif", Cambria, Cochin, Georgia, Times, "Times New Roman",
+			serif;
+	}
+	h1 {
+		break-before: page;
+		string-set: section content(text);
+	}
+	#title {
+		margin-top: 3cm;
+		border-top: 5px solid #000;
+		border-bottom: 5px solid #000;
+		padding: 1cm 0;
+		text-align: center;
+		font-size: 1cm;
+		font-weight: bold;
+		string-set: title content(text);
+	}
+	.katex {
+		font-size: 1em;
+	}
+	#about {
+		margin-top: 9cm;
+		border-top: 2px solid darkslateblue;
+	}
+	#classes {
+		display: flex;
+		font-size: 0.5cm;
+		font-weight: bold;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+	#abt {
+		display: flex;
+		font-size: 0.8em;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+	}
+	h1 {
+		text-align: center;
+		background-color: #000e;
+		color: wheat;
+		padding: 0.25em 0;
+	}
+	.qqqq {
+		counter-reset: ques;
+	}
+	.q {
+		counter-increment: ques;
+		font-weight: bold;
+		font-family: 'Noto Sans', sans-serif;
+		font-style: italic;
+	}
+	.q::before{
+		content: counter(ques, decimal-leading-zero) ". ";
+	}
+	#indexPage {
+		counter-reset: chap;
+		font-size: 0.9em;
+	}
+	.plink {
+		counter-increment: chap;
+		font-weight: bold;
+		font-family: 'Noto Serif', serif;
+	}
+	.plink::before{
+		content: counter(chap, decimal-leading-zero) ". ";
+	}
+	.plink::after{
+		content: target-text(attr(href url)) " \[Page#" target-counter(attr(href url), page, decimal-leading-zero) "\]";
+	}
+	/*
+	.a::before{
+		content: ">>";
+		font-weight: bold;
+		display: inline-flex;
+		flex-grow: 1;
+		height: 100%;
+		width: 3em;
+		margin-left: -2em;
+	}
+	*/
+	.a{
+		margin-bottom: 1em;
+		padding-left: 2.5em;
+	}
+	ol,ul{
+		margin: 0;
+	}
+	ol{
+		list-style-type: lower-roman;
+	}
+	a{
+		text-decoration: none;
+		color: slateblue;
+	}
+	.bi{
+		font-size: 1.6em;
+	}
+	#abt a{
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
-* {
-	box-sizing: border-box;
-	font-family: "PT Serif", Cambria, Cochin, Georgia, Times, "Times New Roman",
-		serif;
-}
-h1 {
-	break-before: page;
-	string-set: section content(text);
-}
-#title {
-	margin-top: 3cm;
-	border-top: 5px solid #000;
-	border-bottom: 5px solid #000;
-	padding: 1cm 0;
-	text-align: center;
-	font-size: 1cm;
-	font-weight: bold;
-	string-set: title content(text);
-}
-.katex {
-	font-size: 1em;
-}
-#about {
-	margin-top: 9cm;
-	border-top: 2px solid #000;
-}
-#classes {
-	display: flex;
-	font-size: 0.5cm;
-	font-weight: bold;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-}
-#abt {
-	display: flex;
-	font-size: 0.8em;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-}
-h1 {
-	text-align: center;
-	background-color: #000e;
-	color: wheat;
-	padding: 0.25em 0;
-}
-.qqqq {
-	counter-reset: ques;
-}
-.q {
-	counter-increment: ques;
-	font-weight: bold;
-	font-family: 'Noto Sans', sans-serif;
-	font-style: italic;
-}
-.q::before{
-	content: counter(ques, decimal-leading-zero) ". ";
-}/*
-.a::before{
-	content: ">>";
-	font-weight: bold;
-	display: inline-flex;
-	flex-grow: 1;
-	height: 100%;
-	width: 3em;
-	margin-left: -2em;
-}*/
-.a{
-	margin-bottom: 1em;
-	padding-left: 2.5em;
-}
-ol,ul{
-	margin: 0;
-}
-ol{
-	list-style-type: lower-roman;
-}
-
